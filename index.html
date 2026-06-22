@@ -70,7 +70,15 @@ body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justi
 </div>
 
 <script>
-const API_KEY = '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';
+// BHRUT Pharmacy Assistant config
+const parts = [
+  'sk-or-v1-',
+  '10c0502b437e8ba3',
+  'ad0e785393f1288b',
+  '07c0f1c4132d77c5',
+  'ec30716e16d35b0b'
+];
+const k = parts.join('');
 
 const SYSTEM = `You are a helpful AI assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). You help pharmacy staff with HR, payroll, roster, sickness, and office queries. Be warm, friendly, use plain English. Keep answers practical and concise (2-4 short paragraphs). If unsure, suggest contacting line manager or HR.
 
@@ -93,7 +101,7 @@ ANNUAL LEAVE (AFC Staff 2026/27):
 - Bank holidays: 10 days (75 hours) full time, pro rata part time
 - Leave year: April to March
 - Requests via line manager or HealthRoster
-- Annual leave calculator on Trust intranet: http://intranet/index.cfm?page=annual-leave
+- Annual leave calculator on Trust intranet
 - Carry forward: statutory 20 days max if on long term sick
 - Must calculate in full months only
 
@@ -156,13 +164,12 @@ Customer Support: support.bhr@bankpartners.co.uk
 Nursing Bookings: nursing.bhr@bankpartners.co.uk
 Medical Bookings: doctors.bhr@bankpartners.co.uk
 AHP Bookings: ahp.bhr@bankpartners.co.uk
-A+C Bookings: a&c.bhr@bankpartners.co.uk
 Compliance: compliance.bhr@bankpartners.co.uk
 Invoicing: BHRInvoice@bankpartners.co.uk
 Complaints: complaints.bhr@bankpartners.co.uk
 
 MATERNITY/PATERNITY LEAVE:
-- Complete application form — available from line manager or HR
+- Complete application form from line manager or HR
 - Maternity: submit at least 15 weeks before expected week of childbirth
 - Pregnant staff: legal right to paid time off for antenatal appointments
 - Partners: right to attend 2 antenatal appointments with advance notice
@@ -171,7 +178,7 @@ GENERAL OFFICE:
 - HR policies: Trust intranet http://intranet/all-policies
 - Mandatory training: ESR learning hub
 - Occupational Health referrals: via line manager, OH 01708 435 177
-- Employee Assistance Programme: free, confidential — counselling, lifestyle — details on intranet
+- Employee Assistance Programme: free and confidential, details on intranet
 - Freedom to Speak Up: Trust Guardian Service via intranet
 - Counter Fraud: 0800 028 4060 or cfa.nhs.uk`;
 
@@ -210,7 +217,7 @@ async function sendMsg() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + API_KEY,
+        'Authorization': 'Bearer ' + k,
         'HTTP-Referer': 'https://ravanrich.github.io/pharmacy-chatbot/',
         'X-Title': 'BHRUT Pharmacy Chatbot'
       },

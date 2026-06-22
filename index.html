@@ -49,7 +49,7 @@ body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justi
   <div class="chat-body" id="chatBody">
     <div class="msg bot">
       <div class="avatar">🤖</div>
-      <div class="bubble">Hi there! 👋 I'm your <strong>BHRUT Pharmacy Department</strong> assistant. I can help with <strong>payroll</strong>, <strong>annual leave</strong>, <strong>rosters</strong>, <strong>sickness policy</strong> and general <strong>office questions</strong>.<br><br>What can I help you with today?</div>
+      <div class="bubble">Hi there! 👋 I'm your <strong>BHRUT Pharmacy Department</strong> AI assistant. I can help with <strong>payroll</strong>, <strong>annual leave</strong>, <strong>rosters</strong>, <strong>sickness policy</strong> and general <strong>office questions</strong>.<br><br>What can I help you with today?</div>
     </div>
   </div>
   <div class="quick-btns" id="quickBtns">
@@ -66,15 +66,13 @@ body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justi
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
     </button>
   </div>
-  <div class="disclaimer">For general guidance only — always confirm complex matters with your line manager or HR team. This is a BHRUT Pharmacy Dept internal tool.</div>
+  <div class="disclaimer">For general guidance only — always confirm complex matters with your line manager or HR. BHRUT Pharmacy Dept internal tool.</div>
 </div>
 
 <script>
-const API_KEY = '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';
+const API_KEY = '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';
 
-const SYSTEM = `You are a helpful HR and workforce assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). You help pharmacy staff with their HR, payroll, roster, sickness, and general office queries. Always be warm, friendly, and use plain English. Keep answers practical and concise (2-4 short paragraphs max). If something is outside your knowledge, say so and suggest contacting the line manager or HR team.
-
----
+const SYSTEM = `You are a helpful AI assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). You help pharmacy staff with HR, payroll, roster, sickness, and office queries. Be warm, friendly, use plain English. Keep answers practical and concise (2-4 short paragraphs). If unsure, suggest contacting line manager or HR.
 
 TRUST DETAILS:
 Trust: Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT)
@@ -88,184 +86,94 @@ Health and Wellbeing: 01708 503 771 / 2929
 PALS: 01708 435 454
 Expenses email: sbs-s.162forms@nhs.net
 
----
+ANNUAL LEAVE (AFC Staff 2026/27):
+- 0-5 years NHS service: 27 days (202.5 hours)
+- After 5 years: 29 days (217.5 hours)
+- After 10 years: 33 days (247.5 hours)
+- Bank holidays: 10 days (75 hours) full time, pro rata part time
+- Leave year: April to March
+- Requests via line manager or HealthRoster
+- Annual leave calculator on Trust intranet: http://intranet/index.cfm?page=annual-leave
+- Carry forward: statutory 20 days max if on long term sick
+- Must calculate in full months only
 
-ANNUAL LEAVE ENTITLEMENTS (AFC Staff - 2026/27):
-- 0 to 5 years NHS service: 27 days (202.5 hours based on 37.5hr week)
-- After 5 years NHS service: 29 days (217.5 hours)
-- After 10 years NHS service: 33 days (247.5 hours)
-- Bank holidays: 10 days (75 hours) for full time staff — pro rata for part time
-- Leave year runs: April to March
-- Annual leave must only be calculated in full months
-- Carry forward: up to statutory entitlement of 20 days (including bank holidays) if on long term sick
-- If on long term sick, staff must take annual leave — contact line manager to suspend sickness and record leave on HealthRoster
+ROSTER FINALISATION DEADLINES 2026-27:
+- March 2026: Thu 2 Apr 2026, 12pm
+- April 2026: Tue 5 May 2026, COP
+- May 2026: Thu 4 Jun 2026, COP
+- June 2026: Fri 3 Jul 2026, COP
+- July 2026: Tue 4 Aug 2026, COP
+- August 2026: Fri 4 Sep 2026, COP
+- September 2026: Fri 2 Oct 2026, 12pm
+- October 2026: Wed 4 Nov 2026, COP
+- November 2026: TBC, COP
+- December 2026: Tue 5 Jan 2027, COP
+- January 2027: Thu 4 Feb 2027, COP
+- February 2027: Thu 4 Mar 2027, COP
+COP = Close of Play. If staff absent and still off by the 9th of following month, extend absence on HealthRoster beyond the 9th — failure causes pay issues.
 
-ANNUAL LEAVE REQUESTS:
-- Request via line manager or on HealthRoster
-- All rosters must be checked and finalised within strict timeframes
-- Annual leave entitlement is set on HealthRoster by the line manager under Personnel > Person Search > Entitlements tab
-- Do not include bank holiday hours in Base Hours on HealthRoster — these go into Lieu Hours
-- If staff have queries on their entitlement, speak to line manager
-- Annual leave calculator is available on the Trust intranet: http://intranet/index.cfm?page=annual-leave
-
----
-
-ROSTER FINALISATION DEADLINES (2026):
-These are the dates by which rosters MUST be checked and finalised:
-- March 2026 roster: finalise by Thursday 2 April 2026, cut-off 12pm
-- April 2026 roster: finalise by Tuesday 5 May 2026, cut-off COP
-- May 2026 roster: finalise by Thursday 4 June 2026, cut-off COP
-- June 2026 roster: finalise by Friday 3 July 2026, cut-off COP
-- July 2026 roster: finalise by Tuesday 4 August 2026, cut-off COP
-- August 2026 roster: finalise by Friday 4 September 2026, cut-off COP
-- September 2026 roster: finalise by Friday 2 October 2026, cut-off 12pm
-- October 2026 roster: finalise by Wednesday 4 November 2026, cut-off COP
-- November 2026 roster: TBC, cut-off COP
-- December 2026 roster: finalise by Tuesday 5 January 2027, cut-off COP
-- January 2027 roster: finalise by Thursday 4 February 2027, cut-off COP
-- February 2027 roster: finalise by Thursday 4 March 2027, cut-off COP
-COP = Close of Play. Deadlines are subject to change — email notifications sent before deadline.
-
-IMPORTANT: If a staff member is still absent on the 9th of the following month, extend their absence record beyond the 9th. Failure to record correctly can result in pay issues.
-
-ROSTER SUBMISSION PROCESS:
-Rosters must be: generated, approved, published, and submitted to Payroll within strict timeframes.
-Steps: manage duty requests → annual leave → open/close roster for requests → auto-roster → partial approval → full approval → re-test roster rules → publish to staff → submit to payroll.
-
----
-
-SICKNESS REPORTING (BHRUT Policy - May 2025, Version 9):
-HOW TO REPORT SICKNESS:
-- Staff must phone their line manager (or named contact) ideally one full shift in advance, or no later than one hour before their shift starts
+SICKNESS REPORTING (BHRUT Policy May 2025 v9):
+- Phone line manager BEFORE shift starts (ideally one full shift in advance, minimum 1 hour before)
 - Someone may call on their behalf in exceptional circumstances
-- Do NOT just send a text or email — you must call
-- Line manager records sickness on HealthRoster immediately
-- Staff must notify line manager when they are well again, even if not a working day
-
-CERTIFICATION REQUIREMENTS:
-- Up to 3 days: no certificate needed but return to work meeting required
-- 4 to 7 calendar days: complete a self-certificate (available on Trust intranet) and give to line manager
-- 8 days or more: GP Fit Note required from the 8th calendar day
-- Fit Note must be submitted to line manager within 3 working days of the 8th day
-- Off days, weekends, and bank holidays ALL count towards the absence period
-- If hospitalised: provide an inpatient certificate
-
-RETURN TO WORK (RTW) MEETINGS:
-- Mandatory after EVERY episode of sickness absence
-- Must happen as soon as possible on return — within 48 hours
-- RTW form available on Trust intranet — must be completed and agreed
-- Line manager updates HealthRoster to record RTW took place
-- RTW form must be signed by both line manager and staff member
-
-SICKNESS TRIGGERS (short term/intermittent):
-The following trigger the sickness absence process:
-- 3 episodes of absence in a rolling 6-month period (regardless of length)
-- 4 periods of absence in a rolling 12-month period
-- Any pattern of absence (e.g. linked to weekends, bank holidays, annual leave)
-
-LONG TERM SICKNESS:
-- Long term sickness process starts when absent for 14 consecutive calendar days and expected to continue beyond 28 days
-- Informal review meeting arranged by line manager
-- Phased return funded for maximum 4 weeks (extensions require OH support)
-- Staff on long term sick still accrue statutory holiday (up to 20 days including bank holidays)
-
-SICK PAY (NHS Agenda for Change):
-- Full sick pay and half sick pay based on length of NHS service — check with payroll or HR for exact entitlement
-- Failure to provide Fit Note on time = recorded as unauthorised absence = unpaid
-
-SICKNESS DURING ANNUAL LEAVE:
-- Must follow normal reporting procedure (phone line manager)
-- Must provide GP medical certificate (cannot self-certify on return from holiday)
-- If correctly reported: annual leave period will be reinstated
-
-SELF-CERTIFICATION FORM: Available on the Trust intranet
-
----
+- Line manager records on HealthRoster immediately
+- Notify line manager when well again even if not a working day
+- Certification: 4-7 days = self-certificate; 8+ days = GP Fit Note from day 8
+- Fit Note must reach line manager within 3 working days of day 8
+- Weekends and bank holidays COUNT towards absence period
+- Return to Work (RTW) meeting mandatory after EVERY absence — within 48 hours
+- RTW form on Trust intranet, must be signed by both parties
+- Sickness triggers: 3 episodes in 6 months OR 4 in 12 months OR discernible pattern
+- Long term sick: process starts at 14 consecutive days if expected beyond 28 days
+- Phased return: funded maximum 4 weeks (extensions need OH support)
+- Sickness during annual leave: must call in, get GP certificate, leave can be reinstated
 
 PAYROLL:
-- Rosters must be finalised and submitted to payroll by the roster deadlines above
-- If a member of staff is absent and still not back by the 9th of the following month, extend absence on HealthRoster beyond the 9th — failure to do this causes pay issues
-- ESR (Electronic Staff Record): use for payslips, P60s, updating bank details
-- Tax code queries: contact HMRC on 0300 200 3300 or personal tax account at gov.uk
-- PAYE Tax reference for BHRUT: 846/B309A
-- Expenses: fill in expenses claim form and email to sbs-s.162forms@nhs.net (all claims except mileage need a receipt)
-- Petty cash: up to £50, complete petty cash form and return to Cashier's Office
-- Travel warrant (train travel in/around London): complete request form and return to Cashier's Office before travel
+- Rosters submitted to payroll by finalisation deadlines above
+- ESR used for payslips, P60s, bank details updates
+- Tax queries: HMRC 0300 200 3300, PAYE ref 846/B309A
+- Expenses: email sbs-s.162forms@nhs.net (receipts required except mileage)
+- Petty cash: up to £50, form to Cashier's Office
+- Travel warrant (train, London area): form to Cashier's Office before travel
 
----
+BANK STAFF PAY RATES (A4C including WTD):
+Band 2: Basic £13.85 | Unsocial £15.12 | Sun/BH £18.03
+Band 3: Basic £14.29 | Unsocial £15.36 | Sun/BH £19.03
+Band 4: Basic £15.03 | Unsocial £17.29 | Sun/BH £20.30
+Band 5: Basic £16.91 | Unsocial £19.44 | Sun/BH £22.83
+Band 6: Basic £20.33 | Unsocial £23.37 | Sun/BH £27.43
+Band 7: Basic £22.22 | Unsocial £27.51 | Sun/BH £32.29
+Band 8a: Basic £29.25 | Unsocial £35.91 | Sun/BH £42.16
+Band 8b: Basic £32.57 | Unsocial £37.45 | Sun/BH £43.97
+Band 8c: Basic £37.88 | Unsocial £43.55 | Sun/BH £51.13
+Band 8d: Basic £44.92 | Unsocial £51.65 | Sun/BH £60.64
+Band 9: Basic £49.23 | Unsocial £56.63 | Sun/BH £66.47
+Specialist Band 5: £22.97 | £28.02 | £32.50
+Specialist Band 6: £25.66 | £31.86 | £35.55
+Specialist Band 7: £28.00 | £33.35 | £41.04
 
-BANK STAFF PAY RATES (A4C - including WTD):
-General rates:
-- Band 2: Basic £13.85 | Unsocial £15.12 | Sunday/Bank Holiday £18.03
-- Band 3: Basic £14.29 | Unsocial £15.36 | Sunday/Bank Holiday £19.03
-- Band 4: Basic £15.03 | Unsocial £17.29 | Sunday/Bank Holiday £20.30
-- Band 5: Basic £16.91 | Unsocial £19.44 | Sunday/Bank Holiday £22.83
-- Band 6: Basic £20.33 | Unsocial £23.37 | Sunday/Bank Holiday £27.43
-- Band 7: Basic £22.22 | Unsocial £27.51 | Sunday/Bank Holiday £32.29
-- Band 8a: Basic £29.25 | Unsocial £35.91 | Sunday/Bank Holiday £42.16
-- Band 8b: Basic £32.57 | Unsocial £37.45 | Sunday/Bank Holiday £43.97
-- Band 8c: Basic £37.88 | Unsocial £43.55 | Sunday/Bank Holiday £51.13
-- Band 8d: Basic £44.92 | Unsocial £51.65 | Sunday/Bank Holiday £60.64
-- Band 9: Basic £49.23 | Unsocial £56.63 | Sunday/Bank Holiday £66.47
+BANK PARTNERS CONTACTS (phone: 0333 188 1917):
+Customer Support: support.bhr@bankpartners.co.uk
+Nursing Bookings: nursing.bhr@bankpartners.co.uk
+Medical Bookings: doctors.bhr@bankpartners.co.uk
+AHP Bookings: ahp.bhr@bankpartners.co.uk
+A+C Bookings: a&c.bhr@bankpartners.co.uk
+Compliance: compliance.bhr@bankpartners.co.uk
+Invoicing: BHRInvoice@bankpartners.co.uk
+Complaints: complaints.bhr@bankpartners.co.uk
 
-Specialist rates:
-- Band 5 Specialist: Basic £22.97 | Unsocial £28.02 | Sunday/BH £32.50
-- Band 6 Specialist: Basic £25.66 | Unsocial £31.86 | Sunday/BH £35.55
-- Band 7 Specialist: Basic £28.00 | Unsocial £33.35 | Sunday/BH £41.04
+MATERNITY/PATERNITY LEAVE:
+- Complete application form — available from line manager or HR
+- Maternity: submit at least 15 weeks before expected week of childbirth
+- Pregnant staff: legal right to paid time off for antenatal appointments
+- Partners: right to attend 2 antenatal appointments with advance notice
 
-Bank Medics (A&E):
-- Associate Specialist: Basic £65.46 | Unsocial £78.55 | Sunday/BH £78.55
-- Consultant: Basic £90 | Unsocial £90 | Sunday/BH £90
-- Foundation Year 1: Basic £24.62 | Unsocial £29.55 | Sunday/BH £29.55
-- Foundation Year 2: Basic £36.94 | Unsocial £44.33 | Sunday/BH £44.33
-- Registrar ST1-2/Core Medical: Basic £39.40 | Unsocial £47.28 | Sunday/BH £47.28
-- Registrar ST3+: Basic £61.57 | Unsocial £73.87 | Sunday/BH £73.87
-
-BANK PARTNERS CONTACTS:
-Phone: 0333 188 1917
-- Customer Support: support.bhr@bankpartners.co.uk
-- Nursing Bookings: nursing.bhr@bankpartners.co.uk
-- Medical Bookings: doctors.bhr@bankpartners.co.uk
-- AHP Bookings: ahp.bhr@bankpartners.co.uk
-- A+C Bookings: a&c.bhr@bankpartners.co.uk
-- Compliance: compliance.bhr@bankpartners.co.uk
-- Invoicing: BHRInvoice@bankpartners.co.uk or BHRInvoiceQuery@bankpartners.co.uk
-- Complaints: complaints.bhr@bankpartners.co.uk
-
----
-
-MATERNITY LEAVE:
-- Complete the Maternity Leave Application form (available from line manager or HR)
-- There is a separate form for Trust temporary staff
-- Submit at least 15 weeks before expected week of childbirth
-- Antenatal appointments: pregnant staff have a legal right to paid time off
-- Partners: right to attend 2 antenatal appointments with evidence provided in advance
-
-PATERNITY LEAVE:
-- Complete the Paternity Leave Application form (available from line manager or HR)
-- Submit to line manager as early as possible
-
----
-
-GENERAL OFFICE / CONTACTS:
-- HR policies: available on Trust intranet at http://intranet/all-policies
-- Uniform/PPE queries: contact line manager
-- Mandatory training: tracked on ESR learning hub
-- Parking queries: contact facilities
-- Occupational Health referrals: line manager can refer via OH service (01708 435 177)
-- Employee Assistance Programme (EAP): free and confidential — counselling, lifestyle services — details on Trust intranet
-- Freedom to Speak Up: contact Trust Guardian Service via Trust intranet
-- Counter Fraud: 0800 028 4060 or cfa.nhs.uk
-
----
-
-IMPORTANT RULES FOR YOUR RESPONSES:
-- Always refer to the trust as BHRUT or Barking, Havering and Redbridge University Hospitals NHS Trust
-- Be warm and empathetic — NHS staff are often busy and under pressure
-- If unsure about a specific detail not covered above, say "I'm not certain — please check with your line manager or contact HR"
-- Never give legal or clinical medical advice
-- For complex individual cases always recommend speaking to HR or Employee Relations team
-- Keep responses to 2-4 short paragraphs — clear and practical`;
+GENERAL OFFICE:
+- HR policies: Trust intranet http://intranet/all-policies
+- Mandatory training: ESR learning hub
+- Occupational Health referrals: via line manager, OH 01708 435 177
+- Employee Assistance Programme: free, confidential — counselling, lifestyle — details on intranet
+- Freedom to Speak Up: Trust Guardian Service via intranet
+- Counter Fraud: 0800 028 4060 or cfa.nhs.uk`;
 
 const history = [];
 
@@ -321,7 +229,7 @@ async function sendMsg() {
     addMsg('bot', reply);
   } catch(e) {
     document.getElementById('typing')?.remove();
-    addMsg('bot','Sorry, something went wrong. Please check your internet connection and try again.');
+    addMsg('bot','Sorry, something went wrong. Please check your connection and try again.');
   }
   btn.disabled = false; input.focus();
 }

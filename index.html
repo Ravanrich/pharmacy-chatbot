@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharmacy Department Assistant</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 10px; }
+.chat-wrap { width: 100%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); overflow: hidden; display: flex; flex-direction: column; height: 90vh; max-height: 700px; }
+.chat-header { background: #005EB8; padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
+.nhs-logo { background: white; color: #005EB8; font-weight: 800; font-size: 14px; padding: 6px 10px; border-radius: 4px; }
+.header-info h1 { color: white; font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+.header-info p { color: rgba(255,255,255,0.8); font-size: 13px; }
+.online-dot { width: 10px; height: 10px; background: #78BE20; border-radius: 50%; margin-left: auto; }
+.chat-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.msg { display: flex; gap: 10px; max-width: 90%; }
+.msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.bubble { padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.6; }
+.msg.bot .bubble { background: #f1f4f8; color: #1a1a1a; border-radius: 4px 16px 16px 16px; }
+.msg.user .bubble { background: #005EB8; color: white; border-radius: 16px 4px 16px 16px; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; background: #e8eef5; }
+.quick-btns { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 16px 12px; }
+.quick-btn { font-size: 13px; padding: 6px 14px; border: 1.5px solid #005EB8; border-radius: 20px; background: white; color: #005EB8; cursor: pointer; }
+.quick-btn:hover { background: #005EB8; color: white; }
+.typing { display: flex; gap: 5px; padding: 10px 14px; align-items: center; }
+.typing span { width: 8px; height: 8px; background: #005EB8; border-radius: 50%; animation: bounce 1.2s infinite; opacity: 0.4; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%,80%,100%{transform:translateY(0);opacity:0.4} 40%{transform:translateY(-6px);opacity:1} }
+.input-area { padding: 12px 16px; border-top: 1px solid #e5e7eb; display: flex; gap: 10px; background: white; }
+.input-area input { flex: 1; border: 1.5px solid #d1d5db; border-radius: 24px; padding: 10px 16px; font-size: 14px; outline: none; }
+.input-area input:focus { border-color: #005EB8; }
+.send-btn { width: 40px; height: 40px; border-radius: 50%; background: #005EB8; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.send-btn:disabled { opacity: 0.4; cursor: default; }
+.disclaimer { font-size: 11px; color: #9ca3af; text-align: center; padding: 6px 16px 10px; }
+</style>
+</head>
+<body>
+<div class="chat-wrap">
+  <div class="chat-header">
+    <div class="nhs-logo">NHS</div>
+    <div class="header-info">
+      <h1>Pharmacy Dept Assistant</h1>
+      <p>Payroll · Annual Leave · Rosters · Office queries</p>
+    </div>
+    <div class="online-dot"></div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">
+      <div class="avatar">🤖</div>
+      <div class="bubble">Hi there! 👋 I'm your Pharmacy Department assistant. I can help with <strong>payroll queries</strong>, <strong>annual leave</strong>, <strong>e-rostering</strong> and general <strong>office questions</strong>.<br><br>What can I help you with today?</div>
+    </div>
+  </div>
+  <div class="quick-btns" id="quickBtns">
+    <button class="quick-btn" onclick="quickAsk('How do I request annual leave?')">Annual leave</button>
+    <button class="quick-btn" onclick="quickAsk('When is the payroll cut-off date?')">Payroll cut-off</button>
+    <button class="quick-btn" onclick="quickAsk('How do I swap a shift?')">Shift swap</button>
+    <button class="quick-btn" onclick="quickAsk('How do I report a sick day?')">Sick day</button>
+  </div>
+  <div class="input-area">
+    <input type="text" id="msgInput" placeholder="Type your question here..." onkeydown="if(event.key==='Enter')sendMsg()" />
+    <button class="send-btn" id="sendBtn" onclick="sendMsg()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+  <div class="disclaimer">For general guidance only. Confirm complex matters with your manager or HR team.</div>
+</div>
+<script>
+const API_KEY = 'AQ.Ab8RN6JYKr2SvUGTFyhGEuoGuniT3j1JbcqMyrfbcLLYB0Kh9w';
+const SYSTEM = `You are a helpful NHS Pharmacy Department HR and workforce assistant. Help pharmacy staff with:
+PAYROLL: payroll cut-off dates (typically 7th-10th of each month), pay slip queries, ESR self-service for payslips and P60s, overtime claims, tax code queries (direct to HMRC or payroll team), updating bank details via ESR.
+ANNUAL LEAVE: NHS entitlement is 27 days under 5 years service, 29 days for 5-10 years, 33 days for 10+ years, plus 8 bank holidays. Leave year runs April to March. Carry-over usually up to 5 days with manager approval. Requests go via line manager or e-rostering system.
+E-ROSTERING / ROTA: Shift swaps need line manager or rota coordinator approval then update on the e-rostering system. Report sickness on the rota to your line manager immediately.
+SICKNESS & ABSENCE: Call the department before your shift starts. Self-certification for up to 7 days, then GP note needed. Return-to-work meeting after every absence. Bradford Factor monitors short-term absence.
+GENERAL OFFICE: For HR policies check the NHS intranet or contact HR. Uniform and PPE queries go to line manager. Mandatory training tracked on ESR. Parking queries go to facilities.
+Keep answers short and practical. Be warm and empathetic. Use plain English.`;
+const history = [];
+function addMsg(role, text) {
+  const body = document.getElementById('chatBody');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.innerHTML = '<div class="avatar">' + (role==='bot'?'🤖':'👤') + '</div><div class="bubble">' + text.replace(/\n/g,'<br>') + '</div>';
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+function addTyping() {
+  const body = document.getElementById('chatBody');
+  const div = document.createElement('div');
+  div.className = 'msg bot'; div.id = 'typing';
+  div.innerHTML = '<div class="avatar">🤖</div><div class="bubble typing"><span></span><span></span><span></span></div>';
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+async function sendMsg() {
+  const input = document.getElementById('msgInput');
+  const btn = document.getElementById('sendBtn');
+  const text = input.value.trim();
+  if (!text) return;
+  document.getElementById('quickBtns').style.display = 'none';
+  input.value = ''; btn.disabled = true;
+  addMsg('user', text);
+  history.push({role:'user', parts:[{text}]});
+  addTyping();
+  try {
+    const res = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + API_KEY,
+      { method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ system_instruction:{parts:[{text:SYSTEM}]}, contents:history }) }
+    );
+    const data = await res.json();
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not get a response. Please try again.';
+    document.getElementById('typing')?.remove();
+    history.push({role:'model', parts:[{text:reply}]});
+    addMsg('bot', reply);
+  } catch(e) {
+    document.getElementById('typing')?.remove();
+    addMsg('bot','Sorry, something went wrong. Please try again.');
+  }
+  btn.disabled = false; input.focus();
+}
+function quickAsk(q) { document.getElementById('msgInput').value = q; sendMsg(); }
+</script>
+</body>
+</html>

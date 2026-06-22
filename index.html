@@ -69,7 +69,7 @@ body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justi
   <div class="disclaimer">For general guidance only — always confirm complex matters with your line manager or HR. BHRUT Pharmacy Dept internal tool.</div>
 </div>
 <script>
-const p=['sk-or-v1-','10c0502b437e8ba3','ad0e785393f1288b','07c0f1c4132d77c5','ec30716e16d35b0b'];
+const p=['sk-proj-FJaDfCict5GlC1CuEkGqn_k17FjoYMhbOwt','YdfQ5ZiU0AqlTLAbjNoVmpc8CijqwbtB140B6mq','T3BlbkFJeL-wXaL-HIRtkMVXT98YWIadtZb--dA','pwni9tSiWQ7minCQawDKeeMYCYUozA7aQqE_TpWf8UA'];
 const k=p.join('');
 const SYSTEM=`You are a helpful AI assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). Help pharmacy staff with HR, payroll, roster, sickness, and office queries. Be warm, friendly, plain English. Keep answers practical, 2-4 short paragraphs. If unsure, suggest contacting line manager or HR.
 
@@ -120,26 +120,29 @@ async function sendMsg(){
   addMsg('user',text);
   history.push({role:'user',content:text});
   addTyping();
-  const models=['google/gemini-2.0-flash-exp:free','mistralai/mistral-7b-instruct:free','meta-llama/llama-3.2-3b-instruct:free'];
-  let reply=null;
-  for(const model of models){
-    try{
-      const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Authorization':'Bearer '+k,'HTTP-Referer':'https://ravanrich.github.io/pharmacy-chatbot/','X-Title':'BHRUT Pharmacy Chatbot'},
-        body:JSON.stringify({model:model,messages:[{role:'system',content:SYSTEM},...history]})
-      });
-      const data=await res.json();
-      const r=data.choices?.[0]?.message?.content;
-      if(r&&r.length>10){reply=r;break;}
-    }catch(e){}
-  }
-  document.getElementById('typing')?.remove();
-  if(reply){
-    history.push({role:'assistant',content:reply});
-    addMsg('bot',reply);
-  }else{
-    addMsg('bot','Sorry, all AI models are currently busy. Please try again in a moment.');
+  try{
+    const res=await fetch('https://api.openai.com/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+k},
+      body:JSON.stringify({
+        model:'gpt-4o-mini',
+        messages:[{role:'system',content:SYSTEM},...history],
+        max_tokens:500,
+        temperature:0.7
+      })
+    });
+    const data=await res.json();
+    const reply=data.choices?.[0]?.message?.content;
+    document.getElementById('typing')?.remove();
+    if(reply){
+      history.push({role:'assistant',content:reply});
+      addMsg('bot',reply);
+    } else {
+      addMsg('bot','Sorry, I could not get a response. Please try again.');
+    }
+  }catch(e){
+    document.getElementById('typing')?.remove();
+    addMsg('bot','Sorry, something went wrong. Please try again.');
   }
   btn.disabled=false;input.focus();
 }

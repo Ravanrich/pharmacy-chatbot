@@ -3,37 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pharmacy Department Assistant</title>
+<title>BHRUT Pharmacy Department Assistant</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 10px; }
-.chat-wrap { width: 100%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); overflow: hidden; display: flex; flex-direction: column; height: 90vh; max-height: 700px; }
-.chat-header { background: #005EB8; padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
-.nhs-logo { background: white; color: #005EB8; font-weight: 800; font-size: 14px; padding: 6px 10px; border-radius: 4px; }
-.header-info h1 { color: white; font-size: 16px; font-weight: 600; margin-bottom: 2px; }
-.header-info p { color: rgba(255,255,255,0.8); font-size: 13px; }
-.online-dot { width: 10px; height: 10px; background: #78BE20; border-radius: 50%; margin-left: auto; }
-.chat-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-.msg { display: flex; gap: 10px; max-width: 90%; }
+.chat-wrap { width: 100%; max-width: 620px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); overflow: hidden; display: flex; flex-direction: column; height: 92vh; max-height: 750px; }
+.chat-header { background: #005EB8; padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+.nhs-logo { background: white; color: #005EB8; font-weight: 800; font-size: 13px; padding: 5px 9px; border-radius: 4px; flex-shrink: 0; }
+.header-info h1 { color: white; font-size: 15px; font-weight: 600; margin-bottom: 1px; }
+.header-info p { color: rgba(255,255,255,0.8); font-size: 12px; }
+.online-dot { width: 10px; height: 10px; background: #78BE20; border-radius: 50%; margin-left: auto; flex-shrink: 0; }
+.chat-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.msg { display: flex; gap: 8px; max-width: 92%; }
 .msg.user { align-self: flex-end; flex-direction: row-reverse; }
-.bubble { padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.6; }
+.bubble { padding: 10px 13px; border-radius: 16px; font-size: 13.5px; line-height: 1.6; }
 .msg.bot .bubble { background: #f1f4f8; color: #1a1a1a; border-radius: 4px 16px 16px 16px; }
 .msg.user .bubble { background: #005EB8; color: white; border-radius: 16px 4px 16px 16px; }
-.avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; background: #e8eef5; }
-.quick-btns { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 16px 12px; }
-.quick-btn { font-size: 13px; padding: 6px 14px; border: 1.5px solid #005EB8; border-radius: 20px; background: white; color: #005EB8; cursor: pointer; }
+.avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; background: #e8eef5; }
+.quick-btns { display: flex; flex-wrap: wrap; gap: 7px; padding: 2px 14px 10px; }
+.quick-btn { font-size: 12px; padding: 5px 12px; border: 1.5px solid #005EB8; border-radius: 20px; background: white; color: #005EB8; cursor: pointer; }
 .quick-btn:hover { background: #005EB8; color: white; }
-.typing { display: flex; gap: 5px; padding: 10px 14px; align-items: center; }
-.typing span { width: 8px; height: 8px; background: #005EB8; border-radius: 50%; animation: bounce 1.2s infinite; opacity: 0.4; }
+.typing { display: flex; gap: 5px; padding: 10px 13px; align-items: center; }
+.typing span { width: 7px; height: 7px; background: #005EB8; border-radius: 50%; animation: bounce 1.2s infinite; opacity: 0.4; }
 .typing span:nth-child(2) { animation-delay: 0.2s; }
 .typing span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes bounce { 0%,80%,100%{transform:translateY(0);opacity:0.4} 40%{transform:translateY(-6px);opacity:1} }
-.input-area { padding: 12px 16px; border-top: 1px solid #e5e7eb; display: flex; gap: 10px; background: white; }
-.input-area input { flex: 1; border: 1.5px solid #d1d5db; border-radius: 24px; padding: 10px 16px; font-size: 14px; outline: none; }
+.input-area { padding: 10px 14px; border-top: 1px solid #e5e7eb; display: flex; gap: 8px; background: white; }
+.input-area input { flex: 1; border: 1.5px solid #d1d5db; border-radius: 24px; padding: 9px 15px; font-size: 13.5px; outline: none; }
 .input-area input:focus { border-color: #005EB8; }
-.send-btn { width: 40px; height: 40px; border-radius: 50%; background: #005EB8; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.send-btn { width: 38px; height: 38px; border-radius: 50%; background: #005EB8; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .send-btn:disabled { opacity: 0.4; cursor: default; }
-.disclaimer { font-size: 11px; color: #9ca3af; text-align: center; padding: 6px 16px 10px; }
+.disclaimer { font-size: 11px; color: #9ca3af; text-align: center; padding: 5px 14px 8px; }
 </style>
 </head>
 <body>
@@ -41,41 +41,234 @@ body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justi
   <div class="chat-header">
     <div class="nhs-logo">NHS</div>
     <div class="header-info">
-      <h1>Pharmacy Dept Assistant</h1>
-      <p>Payroll · Annual Leave · Rosters · Office queries</p>
+      <h1>BHRUT Pharmacy Dept Assistant</h1>
+      <p>Payroll · Annual Leave · Rosters · Sickness · Office queries</p>
     </div>
     <div class="online-dot"></div>
   </div>
   <div class="chat-body" id="chatBody">
     <div class="msg bot">
       <div class="avatar">🤖</div>
-      <div class="bubble">Hi there! 👋 I'm your Pharmacy Department assistant. I can help with <strong>payroll queries</strong>, <strong>annual leave</strong>, <strong>e-rostering</strong> and general <strong>office questions</strong>.<br><br>What can I help you with today?</div>
+      <div class="bubble">Hi there! 👋 I'm your <strong>BHRUT Pharmacy Department</strong> assistant. I can help with <strong>payroll</strong>, <strong>annual leave</strong>, <strong>rosters</strong>, <strong>sickness policy</strong> and general <strong>office questions</strong>.<br><br>What can I help you with today?</div>
     </div>
   </div>
   <div class="quick-btns" id="quickBtns">
     <button class="quick-btn" onclick="quickAsk('How do I request annual leave?')">Annual leave</button>
-    <button class="quick-btn" onclick="quickAsk('When is the payroll cut-off date?')">Payroll cut-off</button>
-    <button class="quick-btn" onclick="quickAsk('How do I swap a shift?')">Shift swap</button>
-    <button class="quick-btn" onclick="quickAsk('How do I report a sick day?')">Sick day</button>
+    <button class="quick-btn" onclick="quickAsk('What are the roster finalisation deadlines?')">Roster deadlines</button>
+    <button class="quick-btn" onclick="quickAsk('How do I report a sick day?')">Report sickness</button>
+    <button class="quick-btn" onclick="quickAsk('How do I claim expenses?')">Expenses</button>
+    <button class="quick-btn" onclick="quickAsk('What are the bank staff pay rates?')">Bank pay rates</button>
+    <button class="quick-btn" onclick="quickAsk('How do I apply for maternity leave?')">Maternity leave</button>
   </div>
   <div class="input-area">
     <input type="text" id="msgInput" placeholder="Type your question here..." onkeydown="if(event.key==='Enter')sendMsg()" />
     <button class="send-btn" id="sendBtn" onclick="sendMsg()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
     </button>
   </div>
-  <div class="disclaimer">For general guidance only. Confirm complex matters with your manager or HR team.</div>
+  <div class="disclaimer">For general guidance only — always confirm complex matters with your line manager or HR team. This is a BHRUT Pharmacy Dept internal tool.</div>
 </div>
+
 <script>
-const API_KEY = 'AQ.Ab8RN6JYKr2SvUGTFyhGEuoGuniT3j1JbcqMyrfbcLLYB0Kh9w';
-const SYSTEM = `You are a helpful NHS Pharmacy Department HR and workforce assistant. Help pharmacy staff with:
-PAYROLL: payroll cut-off dates (typically 7th-10th of each month), pay slip queries, ESR self-service for payslips and P60s, overtime claims, tax code queries (direct to HMRC or payroll team), updating bank details via ESR.
-ANNUAL LEAVE: NHS entitlement is 27 days under 5 years service, 29 days for 5-10 years, 33 days for 10+ years, plus 8 bank holidays. Leave year runs April to March. Carry-over usually up to 5 days with manager approval. Requests go via line manager or e-rostering system.
-E-ROSTERING / ROTA: Shift swaps need line manager or rota coordinator approval then update on the e-rostering system. Report sickness on the rota to your line manager immediately.
-SICKNESS & ABSENCE: Call the department before your shift starts. Self-certification for up to 7 days, then GP note needed. Return-to-work meeting after every absence. Bradford Factor monitors short-term absence.
-GENERAL OFFICE: For HR policies check the NHS intranet or contact HR. Uniform and PPE queries go to line manager. Mandatory training tracked on ESR. Parking queries go to facilities.
-Keep answers short and practical. Be warm and empathetic. Use plain English.`;
+const API_KEY = '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';
+
+const SYSTEM = `You are a helpful HR and workforce assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). You help pharmacy staff with their HR, payroll, roster, sickness, and general office queries. Always be warm, friendly, and use plain English. Keep answers practical and concise (2-4 short paragraphs max). If something is outside your knowledge, say so and suggest contacting the line manager or HR team.
+
+---
+
+TRUST DETAILS:
+Trust: Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT)
+E-rostering system: HealthRoster v11
+HealthRoster login: https://bhrut.allocate-cloud.com/HealthRoster/BHRUTLIVE/Login.aspx?client=Eleven
+PAYE Tax reference: 846/B309A
+HMRC phone: 0300 200 3300
+Bank Partners phone: 0333 188 1917
+Occupational Health: 01708 435 177 / 2170 / 3940
+Health and Wellbeing: 01708 503 771 / 2929
+PALS: 01708 435 454
+Expenses email: sbs-s.162forms@nhs.net
+
+---
+
+ANNUAL LEAVE ENTITLEMENTS (AFC Staff - 2026/27):
+- 0 to 5 years NHS service: 27 days (202.5 hours based on 37.5hr week)
+- After 5 years NHS service: 29 days (217.5 hours)
+- After 10 years NHS service: 33 days (247.5 hours)
+- Bank holidays: 10 days (75 hours) for full time staff — pro rata for part time
+- Leave year runs: April to March
+- Annual leave must only be calculated in full months
+- Carry forward: up to statutory entitlement of 20 days (including bank holidays) if on long term sick
+- If on long term sick, staff must take annual leave — contact line manager to suspend sickness and record leave on HealthRoster
+
+ANNUAL LEAVE REQUESTS:
+- Request via line manager or on HealthRoster
+- All rosters must be checked and finalised within strict timeframes
+- Annual leave entitlement is set on HealthRoster by the line manager under Personnel > Person Search > Entitlements tab
+- Do not include bank holiday hours in Base Hours on HealthRoster — these go into Lieu Hours
+- If staff have queries on their entitlement, speak to line manager
+- Annual leave calculator is available on the Trust intranet: http://intranet/index.cfm?page=annual-leave
+
+---
+
+ROSTER FINALISATION DEADLINES (2026):
+These are the dates by which rosters MUST be checked and finalised:
+- March 2026 roster: finalise by Thursday 2 April 2026, cut-off 12pm
+- April 2026 roster: finalise by Tuesday 5 May 2026, cut-off COP
+- May 2026 roster: finalise by Thursday 4 June 2026, cut-off COP
+- June 2026 roster: finalise by Friday 3 July 2026, cut-off COP
+- July 2026 roster: finalise by Tuesday 4 August 2026, cut-off COP
+- August 2026 roster: finalise by Friday 4 September 2026, cut-off COP
+- September 2026 roster: finalise by Friday 2 October 2026, cut-off 12pm
+- October 2026 roster: finalise by Wednesday 4 November 2026, cut-off COP
+- November 2026 roster: TBC, cut-off COP
+- December 2026 roster: finalise by Tuesday 5 January 2027, cut-off COP
+- January 2027 roster: finalise by Thursday 4 February 2027, cut-off COP
+- February 2027 roster: finalise by Thursday 4 March 2027, cut-off COP
+COP = Close of Play. Deadlines are subject to change — email notifications sent before deadline.
+
+IMPORTANT: If a staff member is still absent on the 9th of the following month, extend their absence record beyond the 9th. Failure to record correctly can result in pay issues.
+
+ROSTER SUBMISSION PROCESS:
+Rosters must be: generated, approved, published, and submitted to Payroll within strict timeframes.
+Steps: manage duty requests → annual leave → open/close roster for requests → auto-roster → partial approval → full approval → re-test roster rules → publish to staff → submit to payroll.
+
+---
+
+SICKNESS REPORTING (BHRUT Policy - May 2025, Version 9):
+HOW TO REPORT SICKNESS:
+- Staff must phone their line manager (or named contact) ideally one full shift in advance, or no later than one hour before their shift starts
+- Someone may call on their behalf in exceptional circumstances
+- Do NOT just send a text or email — you must call
+- Line manager records sickness on HealthRoster immediately
+- Staff must notify line manager when they are well again, even if not a working day
+
+CERTIFICATION REQUIREMENTS:
+- Up to 3 days: no certificate needed but return to work meeting required
+- 4 to 7 calendar days: complete a self-certificate (available on Trust intranet) and give to line manager
+- 8 days or more: GP Fit Note required from the 8th calendar day
+- Fit Note must be submitted to line manager within 3 working days of the 8th day
+- Off days, weekends, and bank holidays ALL count towards the absence period
+- If hospitalised: provide an inpatient certificate
+
+RETURN TO WORK (RTW) MEETINGS:
+- Mandatory after EVERY episode of sickness absence
+- Must happen as soon as possible on return — within 48 hours
+- RTW form available on Trust intranet — must be completed and agreed
+- Line manager updates HealthRoster to record RTW took place
+- RTW form must be signed by both line manager and staff member
+
+SICKNESS TRIGGERS (short term/intermittent):
+The following trigger the sickness absence process:
+- 3 episodes of absence in a rolling 6-month period (regardless of length)
+- 4 periods of absence in a rolling 12-month period
+- Any pattern of absence (e.g. linked to weekends, bank holidays, annual leave)
+
+LONG TERM SICKNESS:
+- Long term sickness process starts when absent for 14 consecutive calendar days and expected to continue beyond 28 days
+- Informal review meeting arranged by line manager
+- Phased return funded for maximum 4 weeks (extensions require OH support)
+- Staff on long term sick still accrue statutory holiday (up to 20 days including bank holidays)
+
+SICK PAY (NHS Agenda for Change):
+- Full sick pay and half sick pay based on length of NHS service — check with payroll or HR for exact entitlement
+- Failure to provide Fit Note on time = recorded as unauthorised absence = unpaid
+
+SICKNESS DURING ANNUAL LEAVE:
+- Must follow normal reporting procedure (phone line manager)
+- Must provide GP medical certificate (cannot self-certify on return from holiday)
+- If correctly reported: annual leave period will be reinstated
+
+SELF-CERTIFICATION FORM: Available on the Trust intranet
+
+---
+
+PAYROLL:
+- Rosters must be finalised and submitted to payroll by the roster deadlines above
+- If a member of staff is absent and still not back by the 9th of the following month, extend absence on HealthRoster beyond the 9th — failure to do this causes pay issues
+- ESR (Electronic Staff Record): use for payslips, P60s, updating bank details
+- Tax code queries: contact HMRC on 0300 200 3300 or personal tax account at gov.uk
+- PAYE Tax reference for BHRUT: 846/B309A
+- Expenses: fill in expenses claim form and email to sbs-s.162forms@nhs.net (all claims except mileage need a receipt)
+- Petty cash: up to £50, complete petty cash form and return to Cashier's Office
+- Travel warrant (train travel in/around London): complete request form and return to Cashier's Office before travel
+
+---
+
+BANK STAFF PAY RATES (A4C - including WTD):
+General rates:
+- Band 2: Basic £13.85 | Unsocial £15.12 | Sunday/Bank Holiday £18.03
+- Band 3: Basic £14.29 | Unsocial £15.36 | Sunday/Bank Holiday £19.03
+- Band 4: Basic £15.03 | Unsocial £17.29 | Sunday/Bank Holiday £20.30
+- Band 5: Basic £16.91 | Unsocial £19.44 | Sunday/Bank Holiday £22.83
+- Band 6: Basic £20.33 | Unsocial £23.37 | Sunday/Bank Holiday £27.43
+- Band 7: Basic £22.22 | Unsocial £27.51 | Sunday/Bank Holiday £32.29
+- Band 8a: Basic £29.25 | Unsocial £35.91 | Sunday/Bank Holiday £42.16
+- Band 8b: Basic £32.57 | Unsocial £37.45 | Sunday/Bank Holiday £43.97
+- Band 8c: Basic £37.88 | Unsocial £43.55 | Sunday/Bank Holiday £51.13
+- Band 8d: Basic £44.92 | Unsocial £51.65 | Sunday/Bank Holiday £60.64
+- Band 9: Basic £49.23 | Unsocial £56.63 | Sunday/Bank Holiday £66.47
+
+Specialist rates:
+- Band 5 Specialist: Basic £22.97 | Unsocial £28.02 | Sunday/BH £32.50
+- Band 6 Specialist: Basic £25.66 | Unsocial £31.86 | Sunday/BH £35.55
+- Band 7 Specialist: Basic £28.00 | Unsocial £33.35 | Sunday/BH £41.04
+
+Bank Medics (A&E):
+- Associate Specialist: Basic £65.46 | Unsocial £78.55 | Sunday/BH £78.55
+- Consultant: Basic £90 | Unsocial £90 | Sunday/BH £90
+- Foundation Year 1: Basic £24.62 | Unsocial £29.55 | Sunday/BH £29.55
+- Foundation Year 2: Basic £36.94 | Unsocial £44.33 | Sunday/BH £44.33
+- Registrar ST1-2/Core Medical: Basic £39.40 | Unsocial £47.28 | Sunday/BH £47.28
+- Registrar ST3+: Basic £61.57 | Unsocial £73.87 | Sunday/BH £73.87
+
+BANK PARTNERS CONTACTS:
+Phone: 0333 188 1917
+- Customer Support: support.bhr@bankpartners.co.uk
+- Nursing Bookings: nursing.bhr@bankpartners.co.uk
+- Medical Bookings: doctors.bhr@bankpartners.co.uk
+- AHP Bookings: ahp.bhr@bankpartners.co.uk
+- A+C Bookings: a&c.bhr@bankpartners.co.uk
+- Compliance: compliance.bhr@bankpartners.co.uk
+- Invoicing: BHRInvoice@bankpartners.co.uk or BHRInvoiceQuery@bankpartners.co.uk
+- Complaints: complaints.bhr@bankpartners.co.uk
+
+---
+
+MATERNITY LEAVE:
+- Complete the Maternity Leave Application form (available from line manager or HR)
+- There is a separate form for Trust temporary staff
+- Submit at least 15 weeks before expected week of childbirth
+- Antenatal appointments: pregnant staff have a legal right to paid time off
+- Partners: right to attend 2 antenatal appointments with evidence provided in advance
+
+PATERNITY LEAVE:
+- Complete the Paternity Leave Application form (available from line manager or HR)
+- Submit to line manager as early as possible
+
+---
+
+GENERAL OFFICE / CONTACTS:
+- HR policies: available on Trust intranet at http://intranet/all-policies
+- Uniform/PPE queries: contact line manager
+- Mandatory training: tracked on ESR learning hub
+- Parking queries: contact facilities
+- Occupational Health referrals: line manager can refer via OH service (01708 435 177)
+- Employee Assistance Programme (EAP): free and confidential — counselling, lifestyle services — details on Trust intranet
+- Freedom to Speak Up: contact Trust Guardian Service via Trust intranet
+- Counter Fraud: 0800 028 4060 or cfa.nhs.uk
+
+---
+
+IMPORTANT RULES FOR YOUR RESPONSES:
+- Always refer to the trust as BHRUT or Barking, Havering and Redbridge University Hospitals NHS Trust
+- Be warm and empathetic — NHS staff are often busy and under pressure
+- If unsure about a specific detail not covered above, say "I'm not certain — please check with your line manager or contact HR"
+- Never give legal or clinical medical advice
+- For complex individual cases always recommend speaking to HR or Employee Relations team
+- Keep responses to 2-4 short paragraphs — clear and practical`;
+
 const history = [];
+
 function addMsg(role, text) {
   const body = document.getElementById('chatBody');
   const div = document.createElement('div');
@@ -84,6 +277,7 @@ function addMsg(role, text) {
   body.appendChild(div);
   body.scrollTop = body.scrollHeight;
 }
+
 function addTyping() {
   const body = document.getElementById('chatBody');
   const div = document.createElement('div');
@@ -92,6 +286,7 @@ function addTyping() {
   body.appendChild(div);
   body.scrollTop = body.scrollHeight;
 }
+
 async function sendMsg() {
   const input = document.getElementById('msgInput');
   const btn = document.getElementById('sendBtn');
@@ -100,25 +295,37 @@ async function sendMsg() {
   document.getElementById('quickBtns').style.display = 'none';
   input.value = ''; btn.disabled = true;
   addMsg('user', text);
-  history.push({role:'user', parts:[{text}]});
+  history.push({role:'user', content: text});
   addTyping();
   try {
-    const res = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + API_KEY,
-      { method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ system_instruction:{parts:[{text:SYSTEM}]}, contents:history }) }
-    );
+    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + API_KEY,
+        'HTTP-Referer': 'https://ravanrich.github.io/pharmacy-chatbot/',
+        'X-Title': 'BHRUT Pharmacy Chatbot'
+      },
+      body: JSON.stringify({
+        model: 'meta-llama/llama-3.2-3b-instruct:free',
+        messages: [
+          {role: 'system', content: SYSTEM},
+          ...history
+        ]
+      })
+    });
     const data = await res.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not get a response. Please try again.';
+    const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not get a response. Please try again.';
     document.getElementById('typing')?.remove();
-    history.push({role:'model', parts:[{text:reply}]});
+    history.push({role:'assistant', content: reply});
     addMsg('bot', reply);
   } catch(e) {
     document.getElementById('typing')?.remove();
-    addMsg('bot','Sorry, something went wrong. Please try again.');
+    addMsg('bot','Sorry, something went wrong. Please check your internet connection and try again.');
   }
   btn.disabled = false; input.focus();
 }
+
 function quickAsk(q) { document.getElementById('msgInput').value = q; sendMsg(); }
 </script>
 </body>

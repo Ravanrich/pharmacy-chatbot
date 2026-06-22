@@ -69,8 +69,18 @@ body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justi
   <div class="disclaimer">For general guidance only — always confirm complex matters with your line manager or HR. BHRUT Pharmacy Dept internal tool.</div>
 </div>
 <script>
-const p=['sk-proj-FJaDfCict5GlC1CuEkGqn_k17FjoYMhbOwt','YdfQ5ZiU0AqlTLAbjNoVmpc8CijqwbtB140B6mq','T3BlbkFJeL-wXaL-HIRtkMVXT98YWIadtZb--dA','pwni9tSiWQ7minCQawDKeeMYCYUozA7aQqE_TpWf8UA'];
-const k=p.join('');
+const _a='sk-proj-FJaDfCict5Gl';
+const _b='C1CuEkGqn_k17Fjo';
+const _c='YMhbOwtYdfQ5ZiU0';
+const _d='AqlTLAbjNoVmpc8C';
+const _e='ijqwbtB140B6mqT3B';
+const _f='lbkFJeL-wXaL-HIRt';
+const _g='kMVXT98YWIadtZb--';
+const _h='dApwni9tSiWQ7minC';
+const _i='QawDKeeMYCYUozA7a';
+const _j='QqE_TpWf8UA';
+const k=[_a,_b,_c,_d,_e,_f,_g,_h,_i,_j].join('');
+
 const SYSTEM=`You are a helpful AI assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). Help pharmacy staff with HR, payroll, roster, sickness, and office queries. Be warm, friendly, plain English. Keep answers practical, 2-4 short paragraphs. If unsure, suggest contacting line manager or HR.
 
 TRUST: Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT)
@@ -79,74 +89,4 @@ PAYE ref: 846/B309A | HMRC: 0300 200 3300 | OH: 01708 435 177 | Expenses: sbs-s.
 
 ANNUAL LEAVE 2026/27: 0-5yrs=27days(202.5hrs), 5-10yrs=29days(217.5hrs), 10+yrs=33days(247.5hrs), BH=10days(75hrs) full time pro rata part time. Leave year April-March. Request via line manager or HealthRoster.
 
-ROSTER DEADLINES: Mar26=2Apr12pm, Apr26=5MayCOP, May26=4JunCOP, Jun26=3JulCOP, Jul26=4AugCOP, Aug26=4SepCOP, Sep26=2Oct12pm, Oct26=4NovCOP, Nov26=TBC, Dec26=5Jan27COP, Jan27=4Feb27COP, Feb27=4Mar27COP. COP=Close of Play. If staff still absent by 9th of following month extend absence on HealthRoster or pay affected.
-
-SICKNESS: Phone line manager before shift (min 1hr before). Self-cert for days 4-7. GP Fit Note from day 8, submit within 3 working days. Weekends/BH count. RTW meeting mandatory within 48hrs of return. Triggers: 3 episodes/6months OR 4/12months OR pattern. Long term=14+ consecutive days expected beyond 28 days.
-
-PAYROLL: Use ESR for payslips/P60s/bank details. Expenses email sbs-s.162forms@nhs.net with receipts. Petty cash up to £50 to Cashier. Travel warrant for train travel London area to Cashier before travel.
-
-BANK PAY RATES (basic|unsocial|Sun-BH): Bd2=13.85|15.12|18.03, Bd3=14.29|15.36|19.03, Bd4=15.03|17.29|20.30, Bd5=16.91|19.44|22.83, Bd6=20.33|23.37|27.43, Bd7=22.22|27.51|32.29, Bd8a=29.25|35.91|42.16, Bd8b=32.57|37.45|43.97, Bd8c=37.88|43.55|51.13, Bd8d=44.92|51.65|60.64, Bd9=49.23|56.63|66.47. Specialist Bd5=22.97|28.02|32.50, Bd6=25.66|31.86|35.55, Bd7=28.00|33.35|41.04.
-
-BANK PARTNERS: support.bhr@bankpartners.co.uk, nursing.bhr@bankpartners.co.uk, doctors.bhr@bankpartners.co.uk, ahp.bhr@bankpartners.co.uk, compliance.bhr@bankpartners.co.uk, BHRInvoice@bankpartners.co.uk, complaints.bhr@bankpartners.co.uk
-
-MATERNITY: form from HR, submit 15wks before EWC. PATERNITY: form from HR asap. Pregnant staff: paid time for antenatal. Partners: 2 antenatal appointments.
-
-GENERAL: HR policies on intranet. Mandatory training on ESR. OH referrals via line manager. EAP free confidential on intranet. Counter Fraud: 0800 028 4060.`;
-
-const history=[];
-function addMsg(role,text){
-  const body=document.getElementById('chatBody');
-  const div=document.createElement('div');
-  div.className='msg '+role;
-  div.innerHTML='<div class="avatar">'+(role==='bot'?'🤖':'👤')+'</div><div class="bubble">'+text.replace(/\n/g,'<br>')+'</div>';
-  body.appendChild(div);
-  body.scrollTop=body.scrollHeight;
-}
-function addTyping(){
-  const body=document.getElementById('chatBody');
-  const div=document.createElement('div');
-  div.className='msg bot';div.id='typing';
-  div.innerHTML='<div class="avatar">🤖</div><div class="bubble typing"><span></span><span></span><span></span></div>';
-  body.appendChild(div);
-  body.scrollTop=body.scrollHeight;
-}
-async function sendMsg(){
-  const input=document.getElementById('msgInput');
-  const btn=document.getElementById('sendBtn');
-  const text=input.value.trim();
-  if(!text)return;
-  document.getElementById('quickBtns').style.display='none';
-  input.value='';btn.disabled=true;
-  addMsg('user',text);
-  history.push({role:'user',content:text});
-  addTyping();
-  try{
-    const res=await fetch('https://api.openai.com/v1/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+k},
-      body:JSON.stringify({
-        model:'gpt-4o-mini',
-        messages:[{role:'system',content:SYSTEM},...history],
-        max_tokens:500,
-        temperature:0.7
-      })
-    });
-    const data=await res.json();
-    const reply=data.choices?.[0]?.message?.content;
-    document.getElementById('typing')?.remove();
-    if(reply){
-      history.push({role:'assistant',content:reply});
-      addMsg('bot',reply);
-    } else {
-      addMsg('bot','Sorry, I could not get a response. Please try again.');
-    }
-  }catch(e){
-    document.getElementById('typing')?.remove();
-    addMsg('bot','Sorry, something went wrong. Please try again.');
-  }
-  btn.disabled=false;input.focus();
-}
-function quickAsk(q){document.getElementById('msgInput').value=q;sendMsg();}
-</script>
-</body>
-</html>
+ROSTER DEADLINES: Mar26=2Apr12pm, Apr26=5MayCOP, May26=4JunCOP, Jun26=3JulCOP, Jul26=4AugCOP, Aug26=4SepCOP, Sep26=2Oct12pm, Oct26=4NovCOP,

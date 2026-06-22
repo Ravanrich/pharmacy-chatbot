@@ -68,180 +68,82 @@ body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; justi
   </div>
   <div class="disclaimer">For general guidance only — always confirm complex matters with your line manager or HR. BHRUT Pharmacy Dept internal tool.</div>
 </div>
-
 <script>
-// BHRUT Pharmacy Assistant config
-const parts = [
-  'sk-or-v1-',
-  '10c0502b437e8ba3',
-  'ad0e785393f1288b',
-  '07c0f1c4132d77c5',
-  'ec30716e16d35b0b'
-];
-const k = parts.join('');
+const p=['sk-or-v1-','10c0502b437e8ba3','ad0e785393f1288b','07c0f1c4132d77c5','ec30716e16d35b0b'];
+const k=p.join('');
+const SYSTEM=`You are a helpful AI assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). Help pharmacy staff with HR, payroll, roster, sickness, and office queries. Be warm, friendly, plain English. Keep answers practical, 2-4 short paragraphs. If unsure, suggest contacting line manager or HR.
 
-const SYSTEM = `You are a helpful AI assistant for the Pharmacy Department at Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT). You help pharmacy staff with HR, payroll, roster, sickness, and office queries. Be warm, friendly, use plain English. Keep answers practical and concise (2-4 short paragraphs). If unsure, suggest contacting line manager or HR.
+TRUST: Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT)
+HealthRoster v11 login: https://bhrut.allocate-cloud.com/HealthRoster/BHRUTLIVE/Login.aspx?client=Eleven
+PAYE ref: 846/B309A | HMRC: 0300 200 3300 | OH: 01708 435 177 | Expenses: sbs-s.162forms@nhs.net | Bank Partners: 0333 188 1917
 
-TRUST DETAILS:
-Trust: Barking, Havering and Redbridge University Hospitals NHS Trust (BHRUT)
-E-rostering system: HealthRoster v11
-HealthRoster login: https://bhrut.allocate-cloud.com/HealthRoster/BHRUTLIVE/Login.aspx?client=Eleven
-PAYE Tax reference: 846/B309A
-HMRC phone: 0300 200 3300
-Bank Partners phone: 0333 188 1917
-Occupational Health: 01708 435 177 / 2170 / 3940
-Health and Wellbeing: 01708 503 771 / 2929
-PALS: 01708 435 454
-Expenses email: sbs-s.162forms@nhs.net
+ANNUAL LEAVE 2026/27: 0-5yrs=27days(202.5hrs), 5-10yrs=29days(217.5hrs), 10+yrs=33days(247.5hrs), BH=10days(75hrs) full time pro rata part time. Leave year April-March. Request via line manager or HealthRoster.
 
-ANNUAL LEAVE (AFC Staff 2026/27):
-- 0-5 years NHS service: 27 days (202.5 hours)
-- After 5 years: 29 days (217.5 hours)
-- After 10 years: 33 days (247.5 hours)
-- Bank holidays: 10 days (75 hours) full time, pro rata part time
-- Leave year: April to March
-- Requests via line manager or HealthRoster
-- Annual leave calculator on Trust intranet
-- Carry forward: statutory 20 days max if on long term sick
-- Must calculate in full months only
+ROSTER DEADLINES: Mar26=2Apr12pm, Apr26=5MayCOP, May26=4JunCOP, Jun26=3JulCOP, Jul26=4AugCOP, Aug26=4SepCOP, Sep26=2Oct12pm, Oct26=4NovCOP, Nov26=TBC, Dec26=5Jan27COP, Jan27=4Feb27COP, Feb27=4Mar27COP. COP=Close of Play. If staff still absent by 9th of following month extend absence on HealthRoster or pay affected.
 
-ROSTER FINALISATION DEADLINES 2026-27:
-- March 2026: Thu 2 Apr 2026, 12pm
-- April 2026: Tue 5 May 2026, COP
-- May 2026: Thu 4 Jun 2026, COP
-- June 2026: Fri 3 Jul 2026, COP
-- July 2026: Tue 4 Aug 2026, COP
-- August 2026: Fri 4 Sep 2026, COP
-- September 2026: Fri 2 Oct 2026, 12pm
-- October 2026: Wed 4 Nov 2026, COP
-- November 2026: TBC, COP
-- December 2026: Tue 5 Jan 2027, COP
-- January 2027: Thu 4 Feb 2027, COP
-- February 2027: Thu 4 Mar 2027, COP
-COP = Close of Play. If staff absent and still off by the 9th of following month, extend absence on HealthRoster beyond the 9th — failure causes pay issues.
+SICKNESS: Phone line manager before shift (min 1hr before). Self-cert for days 4-7. GP Fit Note from day 8, submit within 3 working days. Weekends/BH count. RTW meeting mandatory within 48hrs of return. Triggers: 3 episodes/6months OR 4/12months OR pattern. Long term=14+ consecutive days expected beyond 28 days.
 
-SICKNESS REPORTING (BHRUT Policy May 2025 v9):
-- Phone line manager BEFORE shift starts (ideally one full shift in advance, minimum 1 hour before)
-- Someone may call on their behalf in exceptional circumstances
-- Line manager records on HealthRoster immediately
-- Notify line manager when well again even if not a working day
-- Certification: 4-7 days = self-certificate; 8+ days = GP Fit Note from day 8
-- Fit Note must reach line manager within 3 working days of day 8
-- Weekends and bank holidays COUNT towards absence period
-- Return to Work (RTW) meeting mandatory after EVERY absence — within 48 hours
-- RTW form on Trust intranet, must be signed by both parties
-- Sickness triggers: 3 episodes in 6 months OR 4 in 12 months OR discernible pattern
-- Long term sick: process starts at 14 consecutive days if expected beyond 28 days
-- Phased return: funded maximum 4 weeks (extensions need OH support)
-- Sickness during annual leave: must call in, get GP certificate, leave can be reinstated
+PAYROLL: Use ESR for payslips/P60s/bank details. Expenses email sbs-s.162forms@nhs.net with receipts. Petty cash up to £50 to Cashier. Travel warrant for train travel London area to Cashier before travel.
 
-PAYROLL:
-- Rosters submitted to payroll by finalisation deadlines above
-- ESR used for payslips, P60s, bank details updates
-- Tax queries: HMRC 0300 200 3300, PAYE ref 846/B309A
-- Expenses: email sbs-s.162forms@nhs.net (receipts required except mileage)
-- Petty cash: up to £50, form to Cashier's Office
-- Travel warrant (train, London area): form to Cashier's Office before travel
+BANK PAY RATES (basic|unsocial|Sun-BH): Bd2=13.85|15.12|18.03, Bd3=14.29|15.36|19.03, Bd4=15.03|17.29|20.30, Bd5=16.91|19.44|22.83, Bd6=20.33|23.37|27.43, Bd7=22.22|27.51|32.29, Bd8a=29.25|35.91|42.16, Bd8b=32.57|37.45|43.97, Bd8c=37.88|43.55|51.13, Bd8d=44.92|51.65|60.64, Bd9=49.23|56.63|66.47. Specialist Bd5=22.97|28.02|32.50, Bd6=25.66|31.86|35.55, Bd7=28.00|33.35|41.04.
 
-BANK STAFF PAY RATES (A4C including WTD):
-Band 2: Basic £13.85 | Unsocial £15.12 | Sun/BH £18.03
-Band 3: Basic £14.29 | Unsocial £15.36 | Sun/BH £19.03
-Band 4: Basic £15.03 | Unsocial £17.29 | Sun/BH £20.30
-Band 5: Basic £16.91 | Unsocial £19.44 | Sun/BH £22.83
-Band 6: Basic £20.33 | Unsocial £23.37 | Sun/BH £27.43
-Band 7: Basic £22.22 | Unsocial £27.51 | Sun/BH £32.29
-Band 8a: Basic £29.25 | Unsocial £35.91 | Sun/BH £42.16
-Band 8b: Basic £32.57 | Unsocial £37.45 | Sun/BH £43.97
-Band 8c: Basic £37.88 | Unsocial £43.55 | Sun/BH £51.13
-Band 8d: Basic £44.92 | Unsocial £51.65 | Sun/BH £60.64
-Band 9: Basic £49.23 | Unsocial £56.63 | Sun/BH £66.47
-Specialist Band 5: £22.97 | £28.02 | £32.50
-Specialist Band 6: £25.66 | £31.86 | £35.55
-Specialist Band 7: £28.00 | £33.35 | £41.04
+BANK PARTNERS: support.bhr@bankpartners.co.uk, nursing.bhr@bankpartners.co.uk, doctors.bhr@bankpartners.co.uk, ahp.bhr@bankpartners.co.uk, compliance.bhr@bankpartners.co.uk, BHRInvoice@bankpartners.co.uk, complaints.bhr@bankpartners.co.uk
 
-BANK PARTNERS CONTACTS (phone: 0333 188 1917):
-Customer Support: support.bhr@bankpartners.co.uk
-Nursing Bookings: nursing.bhr@bankpartners.co.uk
-Medical Bookings: doctors.bhr@bankpartners.co.uk
-AHP Bookings: ahp.bhr@bankpartners.co.uk
-Compliance: compliance.bhr@bankpartners.co.uk
-Invoicing: BHRInvoice@bankpartners.co.uk
-Complaints: complaints.bhr@bankpartners.co.uk
+MATERNITY: form from HR, submit 15wks before EWC. PATERNITY: form from HR asap. Pregnant staff: paid time for antenatal. Partners: 2 antenatal appointments.
 
-MATERNITY/PATERNITY LEAVE:
-- Complete application form from line manager or HR
-- Maternity: submit at least 15 weeks before expected week of childbirth
-- Pregnant staff: legal right to paid time off for antenatal appointments
-- Partners: right to attend 2 antenatal appointments with advance notice
+GENERAL: HR policies on intranet. Mandatory training on ESR. OH referrals via line manager. EAP free confidential on intranet. Counter Fraud: 0800 028 4060.`;
 
-GENERAL OFFICE:
-- HR policies: Trust intranet http://intranet/all-policies
-- Mandatory training: ESR learning hub
-- Occupational Health referrals: via line manager, OH 01708 435 177
-- Employee Assistance Programme: free and confidential, details on intranet
-- Freedom to Speak Up: Trust Guardian Service via intranet
-- Counter Fraud: 0800 028 4060 or cfa.nhs.uk`;
-
-const history = [];
-
-function addMsg(role, text) {
-  const body = document.getElementById('chatBody');
-  const div = document.createElement('div');
-  div.className = 'msg ' + role;
-  div.innerHTML = '<div class="avatar">' + (role==='bot'?'🤖':'👤') + '</div><div class="bubble">' + text.replace(/\n/g,'<br>') + '</div>';
+const history=[];
+function addMsg(role,text){
+  const body=document.getElementById('chatBody');
+  const div=document.createElement('div');
+  div.className='msg '+role;
+  div.innerHTML='<div class="avatar">'+(role==='bot'?'🤖':'👤')+'</div><div class="bubble">'+text.replace(/\n/g,'<br>')+'</div>';
   body.appendChild(div);
-  body.scrollTop = body.scrollHeight;
+  body.scrollTop=body.scrollHeight;
 }
-
-function addTyping() {
-  const body = document.getElementById('chatBody');
-  const div = document.createElement('div');
-  div.className = 'msg bot'; div.id = 'typing';
-  div.innerHTML = '<div class="avatar">🤖</div><div class="bubble typing"><span></span><span></span><span></span></div>';
+function addTyping(){
+  const body=document.getElementById('chatBody');
+  const div=document.createElement('div');
+  div.className='msg bot';div.id='typing';
+  div.innerHTML='<div class="avatar">🤖</div><div class="bubble typing"><span></span><span></span><span></span></div>';
   body.appendChild(div);
-  body.scrollTop = body.scrollHeight;
+  body.scrollTop=body.scrollHeight;
 }
-
-async function sendMsg() {
-  const input = document.getElementById('msgInput');
-  const btn = document.getElementById('sendBtn');
-  const text = input.value.trim();
-  if (!text) return;
-  document.getElementById('quickBtns').style.display = 'none';
-  input.value = ''; btn.disabled = true;
-  addMsg('user', text);
-  history.push({role:'user', content: text});
+async function sendMsg(){
+  const input=document.getElementById('msgInput');
+  const btn=document.getElementById('sendBtn');
+  const text=input.value.trim();
+  if(!text)return;
+  document.getElementById('quickBtns').style.display='none';
+  input.value='';btn.disabled=true;
+  addMsg('user',text);
+  history.push({role:'user',content:text});
   addTyping();
-  try {
-    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + k,
-        'HTTP-Referer': 'https://ravanrich.github.io/pharmacy-chatbot/',
-        'X-Title': 'BHRUT Pharmacy Chatbot'
-      },
-      body: JSON.stringify({
-        model: 'meta-llama/llama-3.2-3b-instruct:free',
-        messages: [
-          {role: 'system', content: SYSTEM},
-          ...history
-        ]
-      })
-    });
-    const data = await res.json();
-    const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not get a response. Please try again.';
-    document.getElementById('typing')?.remove();
-    history.push({role:'assistant', content: reply});
-    addMsg('bot', reply);
-  } catch(e) {
-    document.getElementById('typing')?.remove();
-    addMsg('bot','Sorry, something went wrong. Please check your connection and try again.');
+  const models=['google/gemini-2.0-flash-exp:free','mistralai/mistral-7b-instruct:free','meta-llama/llama-3.2-3b-instruct:free'];
+  let reply=null;
+  for(const model of models){
+    try{
+      const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+k,'HTTP-Referer':'https://ravanrich.github.io/pharmacy-chatbot/','X-Title':'BHRUT Pharmacy Chatbot'},
+        body:JSON.stringify({model:model,messages:[{role:'system',content:SYSTEM},...history]})
+      });
+      const data=await res.json();
+      const r=data.choices?.[0]?.message?.content;
+      if(r&&r.length>10){reply=r;break;}
+    }catch(e){}
   }
-  btn.disabled = false; input.focus();
+  document.getElementById('typing')?.remove();
+  if(reply){
+    history.push({role:'assistant',content:reply});
+    addMsg('bot',reply);
+  }else{
+    addMsg('bot','Sorry, all AI models are currently busy. Please try again in a moment.');
+  }
+  btn.disabled=false;input.focus();
 }
-
-function quickAsk(q) { document.getElementById('msgInput').value = q; sendMsg(); }
+function quickAsk(q){document.getElementById('msgInput').value=q;sendMsg();}
 </script>
 </body>
 </html>
